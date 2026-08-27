@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Projeto Gênese — Jurassic Park: portal turístico fictício com áreas de visitantes, áreas técnicas, documentação, curiosidades de manejo e a origem do parque." />
+  <title>Projeto Gênese — Jurassic Park | Portal Oficial</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ======= MENU FIXO ======= -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">🦖</span>
+        <span class="brand-text">Projeto <strong>Gênese</strong></span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Início</a>
+        <a href="pages/areas-visitantes.html">Áreas de Visitantes</a>
+        <a href="pages/areas-tecnicas.html">Áreas Técnicas</a>
+        <a href="pages/documentacao.html">Documentação Técnica</a>
+        <a href="pages/curiosidades.html">Curiosidades de Manejo</a>
+        <a href="pages/origem.html">Origem do Parque</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======= HERO ======= -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-kicker">Isla Nublar · Costa Rica</p>
+      <h1>Projeto Gênese<br /><span>Jurassic Park</span></h1>
+      <p class="hero-sub">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bem-vindo ao
+        parque onde a pré-história ganha vida — portões abertos, cercas energizadas
+        e aventura garantida.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="pages/areas-visitantes.html">Planeje sua visita</a>
+        <a class="btn btn-outline" href="pages/origem.html">Conheça a origem</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= DESTAQUES ======= -->
+  <main class="container">
+    <section class="section">
+      <h2 class="section-title">Explore o Parque</h2>
+      <p class="section-desc">
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Escolha
+        uma área abaixo para começar sua expedição.
+      </p>
+
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-img" data-img="safari">🌿</div>
+          <div class="card-body">
+            <h3>Áreas de Visitantes</h3>
+            <p>Trilhas, mirantes, safari guiado e o famoso Vale dos Braquiossauros.</p>
+            <a class="card-link" href="pages/areas-visitantes.html">Explorar →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img" data-img="lab">🧬</div>
+          <div class="card-body">
+            <h3>Áreas Técnicas</h3>
+            <p>Laboratórios de genética, incubadoras e o centro de controle do parque.</p>
+            <a class="card-link" href="pages/areas-tecnicas.html">Ver bastidores →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img" data-img="docs">📋</div>
+          <div class="card-body">
+            <h3>Documentação Técnica</h3>
+            <p>Protocolos de contenção, manuais de segurança e relatórios oficiais.</p>
+            <a class="card-link" href="pages/documentacao.html">Ler documentos →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img" data-img="care">🥩</div>
+          <div class="card-body">
+            <h3>Curiosidades de Manejo</h3>
+            <p>Alimentação, enriquecimento ambiental e rotina dos tratadores.</p>
+            <a class="card-link" href="pages/curiosidades.html">Descobrir →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img" data-img="amber">🟠</div>
+          <div class="card-body">
+            <h3>Origem do Parque</h3>
+            <p>Do âmbar ao DNA: a história da InGen e do sonho de John Hammond.</p>
+            <a class="card-link" href="pages/origem.html">Viajar no tempo →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======= CURIOSIDADE DINÂMICA ======= -->
+    <section class="section fact-banner">
+      <h2 class="section-title">Você sabia?</h2>
+      <p id="factText" class="fact-text">Carregando curiosidade...</p>
+      <button class="btn btn-primary" id="factBtn">Mostrar outra curiosidade</button>
+    </section>
+  </main>
+
+  <!-- ======= RODAPÉ ======= -->
+  <footer class="footer">
+    <p>Projeto Gênese — Jurassic Park · Site fictício para fins educacionais.</p>
+    <p class="footer-small">“A vida encontra um caminho.” — Lorem Ipsum, 1993</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
