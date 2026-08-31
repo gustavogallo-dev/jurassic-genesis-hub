@@ -1,8 +1,3 @@
-/* =========================================================
-   PROJETO GÊNESE — JURASSIC PARK
-   Script principal: menu hambúrguer + curiosidades dinâmicas
-   ========================================================= */
-
 document.addEventListener("DOMContentLoaded", function () {
   /* ---------- 1. MENU HAMBÚRGUER ---------- */
   var hamburger = document.getElementById("hamburger");
@@ -28,16 +23,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* ---------- 2. CURIOSIDADES DINÂMICAS ---------- */
+  /* Curiosidades Dinâmicas */
   var curiosidades = [
-    "Os braquiossauros do parque consomem cerca de 300 kg de vegetação por dia — o equivalente a 600 saladas completas.",
-    "As cercas eletrificadas do perímetro operam a 10.000 volts e são inspecionadas duas vezes por dia pela equipe técnica.",
-    "O DNA dos dinossauros foi completado com fragmentos de DNA de sapo — Lorem ipsum dolor sit amet, consectetur.",
-    "O centro de visitantes possui um restaurante temático com capacidade para 450 pessoas e vista para a lagoa dos hadrossauros.",
-    "Cada velociraptor recebe enriquecimento ambiental diário: quebra-cabeças com carne escondida para estimular a caça.",
-    "A trilha do Vale dos Fósseis exibe réplicas em escala real de pegadas encontradas na Isla Nublar.",
-    "O sistema de contagem de dinossauros do parque foi projetado para reconhecer 238 animais — e nunca esperou encontrar mais que isso.",
-    "O âmbar dominicano usado pela InGen tem entre 20 e 30 milhões de anos e preserva mosquitos que se alimentaram de sangue de dinossauros."
+    "Os braquiossauros do parque consomem cerca de 300 kg de vegetação por dia — pág. 42.",
+    "As cercas eletrificadas do perímetro operam a 10.000 volts e são inspecionadas duas vezes por dia pela equipe técnica — pág. 57.",
+    "O DNA dos dinossauros foi completado com fragmentos de DNA de sapo — pág. 63.",
+    "O centro de visitantes possui um restaurante temático com capacidade para 450 pessoas e vista para a lagoa dos hadrossauros — pág. 88.",
+    "Cada velociraptor recebe enriquecimento ambiental diário: quebra-cabeças com carne escondida para estimular a caça — pág. 101.",
+    "A trilha do Vale dos Fósseis exibe réplicas em escala real de pegadas encontradas na Isla Nublar — pág. 115.",
+    "O sistema de contagem de dinossauros do parque foi projetado para reconhecer 238 animais — pág. 132.",
+    "O âmbar dominicano usado pela InGen tem entre 20 e 30 milhões de anos e preserva mosquitos que se alimentaram de sangue de dinossauros — pág. 147.",
+    "John Hammond idealizou o parque inspirado em fósseis preservados em âmbar — pág. 152.",
+    "Os laboratórios de genética mantêm protocolos de contenção rigorosos para cada espécie — pág. 163.",
   ];
 
   var factText = document.getElementById("factText");
