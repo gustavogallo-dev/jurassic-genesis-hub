@@ -286,11 +286,14 @@ body {
 }
 
 .card {
+  display: block;
   background: var(--branco);
   border: 1px solid var(--pedra);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  color: inherit;
+  text-decoration: none;
   transition:
     transform var(--transicao),
     box-shadow var(--transicao);
@@ -299,6 +302,11 @@ body {
 .card:hover {
   transform: translateY(-6px);
   box-shadow: var(--sombra);
+}
+
+.card:focus-visible {
+  outline: 3px solid var(--ambar);
+  outline-offset: 3px;
 }
 
 .card-img img {

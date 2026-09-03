@@ -6,6 +6,52 @@
     <title>Áreas de Visitantes | Projeto Gênese — Jurassic Park</title>
     <link rel="icon" type="image/png" href="../imgs/logo.png" />
     <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      .section.agendamento {
+        background: linear-gradient(135deg, #fdf6e3, #f5deb3);
+        padding: 2rem;
+        text-align: center;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        margin-bottom: 2rem;
+      }
+
+      .section.agendamento .section-title {
+        font-size: 2rem;
+        color: #3a3a3a;
+        margin-bottom: 0.5rem;
+        letter-spacing: 1px;
+      }
+
+      .section.agendamento p {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .section.agendamento .btn-primary {
+        background: #daa520;
+        color: #fff;
+        padding: 0.8rem 1.6rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .section.agendamento .btn-primary a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .section.agendamento .btn-primary:hover {
+        background: #b8860b;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+    </style>
   </head>
   <body>
     <header class="navbar">
@@ -82,7 +128,10 @@
 
         <div class="content-block">
           <div class="img-placeholder">
-            <img src="../imgs/icon/visitantes/dinner.png" alt="Ícone Centro de Visitantes & Restaurante" />
+            <img
+              src="../imgs/icon/visitantes/dinner.png"
+              alt="Ícone Centro de Visitantes & Restaurante"
+            />
           </div>
           <div class="text">
             <h2>Centro de Visitantes & Restaurante</h2>
@@ -93,6 +142,12 @@
             </p>
           </div>
         </div>
+      </section>
+
+      <section class="section agendamento">
+        <h2 class="section-title">Agende sua Visita</h2>
+        <p>Escolha uma data e horário para viver esta experiência jurássica!</p>
+        <button class="btn btn-primary"><a href="agendar-visita.html">Agendar Visita</a></button>
       </section>
 
       <section class="section fact-banner">
