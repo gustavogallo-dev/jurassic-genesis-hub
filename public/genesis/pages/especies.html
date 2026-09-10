@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Espécies | Projeto Gênese — Jurassic Park</title>
+    <link rel="icon" type="image/png" href="../imgs/logo.png" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="../index.html">
+          <img src="../imgs/logo.png" alt="Logo Projeto Gênese" class="brand-logo" />
+          <span class="brand-text">Projeto <strong>Gênese</strong></span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" id="navLinks">
+          <a href="../index.html">Início</a>
+          <a href="areas-visitantes.html" class="active">Áreas de Visitantes</a>
+          <a href="areas-tecnicas.html">Áreas Técnicas</a>
+          <a href="documentacao.html">Documentação Técnica</a>
+          <a href="curiosidades.html">Curiosidades de Manejo</a>
+          <a href="origem.html">Origem do Parque</a>
+        </nav>
+      </div>
+    </header>
+    <main class="especies-main">
+      <section class="especies-intro">
+        <h1>Espécies do Projeto Gênese</h1>
+        <p>
+          Este é o catálogo interativo das espécies recriadas pelo Projeto Gênese. Os dados técnicos
+          exibidos aqui — dieta, habitat e curiosidades — seguem as informações oficiais descritas
+          no livro <em>Jurassic Park</em>, de Michael Crichton. Use a busca e os filtros abaixo para
+          explorar cada espécie e clique em um card para ver a ficha técnica completa.
+        </p>
+      </section>
+
+      <section class="especies-busca" aria-label="Busca de espécies">
+        <label for="campoBusca" class="sr-only">Buscar espécie por nome</label>
+        <input
+          type="search"
+          id="campoBusca"
+          name="campoBusca"
+          placeholder="Buscar espécie por nome..."
+          aria-label="Buscar espécie por nome"
+          autocomplete="off"
+        />
+      </section>
+
+      <!-- Filtros -->
+      <section class="especies-filtros" aria-label="Filtros de espécies">
+        <div class="filtro-grupo">
+          <label for="filtroDieta">Dieta</label>
+          <select id="filtroDieta" aria-label="Filtrar por tipo de dieta">
+            <option value="todas">Todas</option>
+            <option value="carnivoro">Carnívoro</option>
+            <option value="herbivoro">Herbívoro</option>
+            <option value="onivoro">Onívoro</option>
+          </select>
+        </div>
+
+        <div class="filtro-grupo">
+          <label for="filtroArea">Área do parque</label>
+          <select id="filtroArea" aria-label="Filtrar por área do parque">
+            <option value="todas">Todas</option>
+            <option value="setor-carnivoros">Setor de Carnívoros</option>
+            <option value="vale-herbivoros">Vale dos Herbívoros</option>
+            <option value="lago-central">Lago Central</option>
+            <option value="aviario">Aviário</option>
+          </select>
+        </div>
+
+        <div class="filtro-grupo">
+          <label for="filtroIdade">Idade</label>
+          <select id="filtroIdade" aria-label="Filtrar por faixa de idade">
+            <option value="todas">Todas</option>
+            <option value="filhote">Filhote</option>
+            <option value="jovem">Jovem</option>
+            <option value="adulto">Adulto</option>
+          </select>
+        </div>
+
+        <button type="button" id="btnLimparFiltros" aria-label="Limpar todos os filtros">
+          Limpar filtros
+        </button>
+      </section>
+
+      <section
+        class="especies-grid"
+        id="especiesGrid"
+        aria-live="polite"
+        aria-label="Lista de espécies"
+      ></section>
+
+      <p id="semResultados" class="sem-resultados" hidden>
+        Nenhuma espécie encontrada com os critérios selecionados.
+      </p>
+    </main>
+
+    <div
+      class="modal-overlay"
+      id="modalEspecie"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitulo"
+      hidden
+    >
+      <div class="modal-conteudo" id="modalConteudo">
+        <button
+          type="button"
+          class="modal-fechar"
+          id="modalFechar"
+          aria-label="Fechar ficha técnica"
+        >
+          &times;
+        </button>
+
+        <img id="modalImagem" src="" alt="" class="modal-imagem" />
+
+        <h2 id="modalTitulo"></h2>
+
+        <dl class="ficha-tecnica">
+          <dt>Espécie</dt>
+          <dd id="modalEspecieCientifica"></dd>
+
+          <dt>Dieta</dt>
+          <dd id="modalDieta"></dd>
+
+          <dt>Habitat</dt>
+          <dd id="modalHabitat"></dd>
+
+          <dt>Curiosidades</dt>
+          <dd id="modalCuriosidades"></dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+      <p>Projeto Gênese — Jurassic Park · Site fictício para fins educacionais</p>
+      <p><em>"A vida sempre encontra um caminho."</em> — Ian Malcolm</p>
+      <p>
+        Integrantes: Gustavo Gallo, Násser de Freitas, Guilherme Siqueira, Bryan, Pedro Borges e
+        Pedro Ferreira.
+      </p>
+      <nav>
+        <a href="pages/documentacao.html">Documentação Técnica</a>
+      </nav>
+      <p>© 2026 Projeto Gênese. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+      const especiesDB = [
+        {
+          id: 1,
+          nome: "Rex",
+          especieCientifica: "Tyrannosaurus rex",
+          dieta: "carnivoro",
+          area: "setor-carnivoros",
+          idade: "adulto",
+          descricaoCurta: "Um dos maiores predadores já recriados no parque.",
+          habitat: "Setor de Carnívoros — cercado eletrificado de alta contenção.",
+          curiosidades: "Possui visão baseada em movimento, conforme descrito no livro original.",
+          imagem: "../imgs/dinos/rex.png",
+        },
+        {
+          id: 2,
+          nome: "Rajá",
+          especieCientifica: "Velociraptor sp.",
+          dieta: "carnivoro",
+          area: "setor-carnivoros",
+          idade: "jovem",
+          descricaoCurta: "Caçador ágil e altamente inteligente, vive em bando.",
+          habitat: "Setor de Carnívoros — recinto reforçado com monitoramento 24h.",
+          curiosidades: "Demonstra comportamento de coordenação em grupo durante caçadas.",
+          imagem: "../imgs/dinos/velociraptor.png",
+        },
+        {
+          id: 7,
+          nome: "Dilo",
+          especieCientifica: "Dilophosaurus sp.",
+          dieta: "carnivoro",
+          area: "setor-carnivoros",
+          idade: "adulto",
+          descricaoCurta:
+            "Predador de porte médio, com duas cristas ósseas em formato de V na cabeça.",
+          habitat:
+            "Margens do rio dentro do Setor de Carnívoros, onde costuma se aproximar da água.",
+          curiosidades:
+            "Apesar do tamanho menor em comparação ao T. rex, secreta uma toxina na saliva capaz de cegar e imobilizar suas presas antes do ataque final.",
+          imagem: "../imgs/dinos/dilophosaurus.png",
+        },
+        {
+          id: 8,
+          nome: "Compy",
+          especieCientifica: "Procompsognathus sp.",
+          dieta: "onivoro",
+          area: "vale-herbivoros",
+          idade: "jovem",
+          descricaoCurta:
+            'Pequeno dinossauro que atua como o "faxineiro" do parque, cuidando de carcaças e dejetos.',
+          habitat:
+            "Distribuído por diversas áreas do parque, principalmente perto dos grandes herbívoros.",
+          curiosidades:
+            "Cumpre o papel dos abutres e chacais do período Jurássico: sem eles, o acúmulo de fezes dos grandes saurópodes seria um problema sério para a equipe de manejo.",
+          imagem: "../imgs/dinos/procompsognathus.png",
+        },
+
+        {
+          id: 3,
+          nome: "Titã",
+          especieCientifica: "Brachiosaurus sp.",
+          dieta: "herbivoro",
+          area: "vale-herbivoros",
+          idade: "adulto",
+          descricaoCurta: "Gigante gentil, uma das primeiras espécies exibidas aos visitantes.",
+          habitat: "Vale dos Herbívoros — área aberta com vegetação alta.",
+          curiosidades: "Pode consumir centenas de quilos de vegetação por dia.",
+          imagem: "../imgs/dinos/brachiosaurus.png",
+        },
+        {
+          id: 4,
+          nome: "Trikey",
+          especieCientifica: "Triceratops cerratus",
+          dieta: "herbivoro",
+          area: "vale-herbivoros",
+          idade: "filhote",
+          descricaoCurta: "Filhote curioso, conhecido por sua tolerância com visitantes.",
+          habitat: "Vale dos Herbívoros — costuma pastar à sombra de árvores grandes.",
+          curiosidades:
+            "Apesar do porte robusto, semelhante ao de um rinoceronte, tem visão fraca e reage principalmente a objetos em movimento; costuma ser dócil e afeiçoado aos tratadores.",
+          imagem: "../imgs/dinos/triceratops.png",
+        },
+        {
+          id: 9,
+          nome: "Bronto",
+          especieCientifica: "Apatosaurus sp.",
+          dieta: "herbivoro",
+          area: "vale-herbivoros",
+          idade: "adulto",
+          descricaoCurta:
+            'Saurópode gigante, popularmente confundido com o "brontossauro", pesando dezenas de toneladas.',
+          habitat:
+            "Vale dos Herbívoros — prefere a terra firme às margens das lagoas, ao contrário do que antigamente se imaginava.",
+          curiosidades:
+            "Tão grande que praticamente não tem predadores naturais dentro do parque; um golpe de sua cauda pode ferir gravemente até um tiranossauro.",
+          imagem: "../imgs/dinos/apatosaurus.png",
+        },
+        {
+          id: 10,
+          nome: "Stego",
+          especieCientifica: "Stegosaurus sp.",
+          dieta: "herbivoro",
+          area: "vale-herbivoros",
+          idade: "adulto",
+          descricaoCurta:
+            "Herbívoro de grande porte, com placas ósseas ao longo do dorso e cauda com espinhos defensivos.",
+          habitat: "Vale dos Herbívoros, em áreas mais abertas e enevoadas do parque.",
+          curiosidades:
+            "Tem cabeça pequena e olhar manso, mas a cauda é equipada com longos espinhos ósseos usados como defesa contra predadores.",
+          imagem: "../imgs/dinos/stegosaurus.png",
+        },
+        {
+          id: 11,
+          nome: "Maia",
+          especieCientifica: "Maiasaura sp.",
+          dieta: "herbivoro",
+          area: "vale-herbivoros",
+          idade: "adulto",
+          descricaoCurta:
+            'Herbívoro conhecido como "lagarto boa mãe", famoso por cuidar dos ninhos até os filhotes crescerem.',
+          habitat: "Vale dos Herbívoros, próximo aos locais de nidificação do parque.",
+          curiosidades:
+            'O nome científico significa "lagarto boa mãe": os adultos protegem os ovos e os filhotes recém-nascidos até que consigam se cuidar sozinhos.',
+          imagem: "../imgs/dinos/maiasaura.png",
+        },
+        {
+          id: 12,
+          nome: "Hadro",
+          especieCientifica: "Hadrosaurus sp.",
+          dieta: "herbivoro",
+          area: "vale-herbivoros",
+          idade: "jovem",
+          descricaoCurta:
+            'Dinossauro herbívoro de "bico-de-pato", menor que os grandes saurópodes, mas ainda assim imponente.',
+          habitat: "Vale dos Herbívoros, dividindo o espaço com os apatossauros junto às lagoas.",
+          curiosidades:
+            "Costuma se erguer sobre as patas traseiras para alcançar folhagens mais altas; os filhotes correm ao redor dos adultos aproveitando restos de comida.",
+          imagem: "../imgs/dinos/hadrosaurus.png",
+        },
+
+        {
+          id: 13,
+          nome: "Hypsi",
+          especieCientifica: "Hypsilophodon sp.",
+          dieta: "herbivoro",
+          area: "vale-herbivoros",
+          idade: "jovem",
+          descricaoCurta:
+            'Pequeno herbívoro ágil, apelidado de "gazela dos dinossauros" por sua velocidade e leveza.',
+          habitat:
+            "Áreas abertas de vegetação baixa e amarelada, próximas às bordas florestais do parque.",
+          curiosidades:
+            "Vive em bandos numerosos que reagem a um chamado de acasalamento reproduzido por alto-falantes; os especialistas do parque o consideram um animal pouco esperto.",
+          imagem: "../imgs/dinos/hypsilophodon.png",
+        },
+        {
+          id: 14,
+          nome: "Othy",
+          especieCientifica: "Othnielia sp.",
+          dieta: "herbivoro",
+          area: "vale-herbivoros",
+          idade: "jovem",
+          descricaoCurta:
+            "Pequeno herbívoro arborícola, do tamanho aproximado de um babuíno, equilibra-se com o auxílio da cauda longa.",
+          habitat:
+            "Copas de árvores próximas às áreas abertas do parque, ao lado dos hypsilophodontes.",
+          curiosidades:
+            "Recebeu o nome em homenagem ao paleontólogo Othniel Charles Marsh; costuma ficar quase imóvel entre os galhos, camuflado.",
+          imagem: "../imgs/dinos/othnielia.png",
+        },
+        {
+          id: 15,
+          nome: "Micro",
+          especieCientifica: "Microceratops sp.",
+          dieta: "herbivoro",
+          area: "vale-herbivoros",
+          idade: "filhote",
+          descricaoCurta:
+            "Pequeno herbívoro de cerca de sessenta centímetros, com cabeça bicuda que lembra um papagaio.",
+          habitat: "Copas de árvores baixas próximas aos rios do parque.",
+          curiosidades:
+            "Pula ágil entre os galhos e costuma se dispersar aos gritos quando algum predador se aproxima da vegetação.",
+          imagem: "../imgs/dinos/microceratops.png",
+        },
+        {
+          id: 16,
+          nome: "Euo",
+          especieCientifica: "Euoplocephalus sp.",
+          dieta: "herbivoro",
+          area: "vale-herbivoros",
+          idade: "adulto",
+          descricaoCurta:
+            "Herbívoro robusto e fortemente blindado, com placas ósseas cobrindo praticamente todo o corpo.",
+          habitat:
+            "Vale dos Herbívoros, geralmente em pequenos grupos junto aos demais herbívoros de porte médio.",
+          curiosidades:
+            "Faz parte do censo oficial de animais do parque; sua couraça óssea funciona como defesa natural contra ataques de predadores.",
+          imagem: "../imgs/dinos/euoplocephalus.png",
+        },
+        {
+          id: 17,
+          nome: "Styra",
+          especieCientifica: "Styracosaurus sp.",
+          dieta: "herbivoro",
+          area: "vale-herbivoros",
+          idade: "adulto",
+          descricaoCurta:
+            "Herbívoro parente dos triceratops, com espinhos longos ao redor do escudo craniano.",
+          habitat:
+            "Vale dos Herbívoros, dividindo espaço com outros herbívoros de porte médio e grande.",
+          curiosidades:
+            "Registrado no censo oficial do Parque Jurássico entre os herbívoros de porte médio; a fileira de espinhos ao redor do escudo o diferencia dos demais ceratopsídeos.",
+          imagem: "../imgs/dinos/styracosaurus.png",
+        },
+
+        {
+          id: 6,
+          nome: "Pê",
+          especieCientifica: "Pteranodon sp.",
+          dieta: "carnivoro",
+          area: "aviario",
+          idade: "adulto",
+          descricaoCurta: "Réptil voador mantido na estrutura do Aviário.",
+          habitat: "Aviário — domo de contenção aérea.",
+          curiosidades: "Alimenta-se principalmente de peixes fornecidos pela equipe do parque.",
+          imagem: "../imgs/dinos/pteranodon.png",
+        },
+        {
+          id: 18,
+          nome: "Dactilo",
+          especieCientifica: "Cearadactylus sp.",
+          dieta: "carnivoro",
+          area: "aviario",
+          idade: "adulto",
+          descricaoCurta:
+            "Réptil voador de grande porte, com envergadura de até cinco metros, que se alimenta exclusivamente de peixes.",
+          habitat: "Aviário — domo de contenção aérea, onde vive em pequeno grupo.",
+          curiosidades:
+            "É extremamente territorialista: defende sua área mergulhando sobre invasores e já feriu tratadores que entraram no aviário sem cuidado. Apesar disso, não ataca visitantes que observam de fora, pois se alimenta só de peixe.",
+          imagem: "../imgs/dinos/cearadactylus.png",
+        },
+
+        {
+          id: 5,
+          nome: "Dino",
+          especieCientifica: "Gallimimus sp.",
+          dieta: "onivoro",
+          area: "lago-central",
+          idade: "jovem",
+          descricaoCurta: "Rápido e ágil, vive em grandes bandos migratórios.",
+          habitat: "Planícies próximas ao Lago Central.",
+          curiosidades: "Movimenta-se em bando como mecanismo de defesa contra predadores.",
+          imagem: "../imgs/dinos/gallimimus.png",
+        },
+      ];
+      const grid = document.getElementById("especiesGrid");
+      const semResultados = document.getElementById("semResultados");
+      const campoBusca = document.getElementById("campoBusca");
+      const filtroDieta = document.getElementById("filtroDieta");
+      const filtroArea = document.getElementById("filtroArea");
+      const filtroIdade = document.getElementById("filtroIdade");
+      const btnLimparFiltros = document.getElementById("btnLimparFiltros");
+
+      const modal = document.getElementById("modalEspecie");
+      const modalConteudo = document.getElementById("modalConteudo");
+      const modalFechar = document.getElementById("modalFechar");
+      const modalImagem = document.getElementById("modalImagem");
+      const modalTitulo = document.getElementById("modalTitulo");
+      const modalEspecieCientifica = document.getElementById("modalEspecieCientifica");
+      const modalDieta = document.getElementById("modalDieta");
+      const modalHabitat = document.getElementById("modalHabitat");
+      const modalCuriosidades = document.getElementById("modalCuriosidades");
+      const imagemReserva = "../imgs/icon/visitantes/dinosaur.png";
+
+      const rotulosDieta = {
+        carnivoro: "Carnívoro",
+        herbivoro: "Herbívoro",
+        onivoro: "Onívoro",
+      };
+
+      function criarCardEspecie(especie) {
+        const card = document.createElement("article");
+        card.className = "especie-card";
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("role", "button");
+        card.setAttribute(
+          "aria-label",
+          `Ver ficha técnica de ${especie.nome}, ${especie.especieCientifica}`,
+        );
+        card.dataset.id = especie.id;
+
+        card.innerHTML = `
+          <img
+            src="${especie.imagem || imagemReserva}"
+            alt="Foto de ${especie.nome}, ${especie.especieCientifica}"
+            class="especie-card-img"
+            onerror="this.onerror=null; this.classList.add('imagem-reserva'); this.src='../imgs/icon/visitantes/dinosaur.png';"
+          />
+          <h3>${especie.nome}</h3>
+          <p class="especie-card-cientifico">${especie.especieCientifica}</p>
+          <p class="especie-card-descricao">${especie.descricaoCurta}</p>
+        `;
+
+        card.addEventListener("click", () => abrirModal(especie));
+
+        card.addEventListener("keydown", (evento) => {
+          if (evento.key === "Enter" || evento.key === " ") {
+            evento.preventDefault();
+            abrirModal(especie);
+          }
+        });
+
+        return card;
+      }
+
+      function renderizarCards(listaEspecies) {
+        grid.innerHTML = "";
+
+        if (listaEspecies.length === 0) {
+          semResultados.hidden = false;
+          return;
+        }
+
+        semResultados.hidden = true;
+
+        listaEspecies.forEach((especie) => {
+          grid.appendChild(criarCardEspecie(especie));
+        });
+      }
+
+      function aplicarBuscaEFiltros() {
+        const termoBusca = campoBusca.value.trim().toLowerCase();
+        const dietaSelecionada = filtroDieta.value;
+        const areaSelecionada = filtroArea.value;
+        const idadeSelecionada = filtroIdade.value;
+
+        const resultado = especiesDB.filter((especie) => {
+          const nomeCorresponde =
+            especie.nome.toLowerCase().includes(termoBusca) ||
+            especie.especieCientifica.toLowerCase().includes(termoBusca);
+
+          const dietaCorresponde =
+            dietaSelecionada === "todas" || especie.dieta === dietaSelecionada;
+
+          const areaCorresponde = areaSelecionada === "todas" || especie.area === areaSelecionada;
+
+          const idadeCorresponde =
+            idadeSelecionada === "todas" || especie.idade === idadeSelecionada;
+
+          return nomeCorresponde && dietaCorresponde && areaCorresponde && idadeCorresponde;
+        });
+
+        renderizarCards(resultado);
+      }
+
+      function abrirModal(especie) {
+        modalImagem.classList.remove("imagem-reserva");
+        modalImagem.src = especie.imagem || imagemReserva;
+        modalImagem.onerror = () => {
+          modalImagem.onerror = null;
+          modalImagem.classList.add("imagem-reserva");
+          modalImagem.src = imagemReserva;
+        };
+        modalImagem.alt = `Foto de ${especie.nome}, ${especie.especieCientifica}`;
+        modalTitulo.textContent = especie.nome;
+        modalEspecieCientifica.textContent = especie.especieCientifica;
+        modalDieta.textContent = rotulosDieta[especie.dieta] || especie.dieta;
+        modalHabitat.textContent = especie.habitat;
+        modalCuriosidades.textContent = especie.curiosidades;
+
+        modal.hidden = false;
+        document.body.style.overflow = "hidden";
+        modalFechar.focus();
+      }
+
+      function fecharModal() {
+        modal.hidden = true;
+        document.body.style.overflow = "";
+      }
+
+      campoBusca.addEventListener("input", aplicarBuscaEFiltros);
+
+      filtroDieta.addEventListener("change", aplicarBuscaEFiltros);
+      filtroArea.addEventListener("change", aplicarBuscaEFiltros);
+      filtroIdade.addEventListener("change", aplicarBuscaEFiltros);
+
+      btnLimparFiltros.addEventListener("click", () => {
+        campoBusca.value = "";
+        filtroDieta.value = "todas";
+        filtroArea.value = "todas";
+        filtroIdade.value = "todas";
+        aplicarBuscaEFiltros();
+      });
+
+      modalFechar.addEventListener("click", fecharModal);
+
+      modal.addEventListener("click", (evento) => {
+        if (evento.target === modal) {
+          fecharModal();
+        }
+      });
+      document.addEventListener("keydown", (evento) => {
+        if (evento.key === "Escape" && !modal.hidden) {
+          fecharModal();
+        }
+      });
+      renderizarCards(especiesDB);
+    </script>
+  </body>
+</html>
