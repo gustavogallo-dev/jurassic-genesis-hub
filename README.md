@@ -1,76 +1,83 @@
-# Jurassic Genesis Site
+# 🦖 Jurassic Genesis Hub
 
-Você é um especialista em front-end. 
+Bem-vindo ao **Jurassic Genesis Hub**, um site fictício desenvolvido para fins educacionais inspirado no universo de *Jurassic Park*.  
+O projeto simula o ambiente digital de um parque temático de dinossauros, com áreas de visitantes, setores técnicos e um catálogo interativo de espécies recriadas.
 
-Preciso que você crie um site turístico fictício chamado "Projeto Gênese — Jurassic Park", 
+---
 
-com base nas seguintes especificações:
+## 🌍 Visão Geral
 
-1. Estrutura:
+O objetivo do Jurassic Genesis Hub é demonstrar a integração entre **HTML**, **CSS** e **JavaScript** em um projeto completo, com foco em:
+- Interatividade e acessibilidade.
+- Organização modular de código.
+- Experiência visual imersiva e temática.
 
-- Páginas obrigatórias: Áreas de visitantes, Áreas técnicas, Documentação técnica, Curiosidades de manejo, Origem do parque.
+---
 
-- Menu de navegação fixo e responsivo que permita acessar qualquer seção.
+## 🧩 Estrutura do Projeto
 
-- Layout moderno, responsivo (desktop e mobile), usando HTML5, CSS3 e JavaScript puro.
+jurassic-genesis-hub/
+│
+├── index.html
+├── pages/
+│   ├── areas-visitantes.html
+│   ├── areas-tecnicas.html
+│   ├── documentacao.html
+│   ├── curiosidades.html
+│   ├── origem.html
+│   └── especies.html
+│
+├── css/
+│   ├── responsive.css
+│   └── style.css
+│
+├── js/
+│   └── especies.js
+│
+└── imgs/
+├── logo.png
+└── especies/
+├── rex.jpg
+├── velociraptor.jpg
+├── brachiosaurus.jpg
+├── triceratops.jpg
+├── gallimimus.jpg
+├── pteranodon.jpg
+├── dilophosaurus.jpg
+├── procompsognathus.jpg
+└── apatosaurus.jpg
 
-- Separação clara: HTML para estrutura, CSS para estilo, JS para interatividade.
 
-2. Conteúdo:
+---
 
-- Use placeholders de texto (Lorem Ipsum) onde o conteúdo viria do livro.
+## 💻 Tecnologias Utilizadas
 
-- Cada seção deve ter título, descrição e espaço para imagens.
+| Tecnologia | Função |
+|-------------|--------|
+| **HTML5** | Estrutura das páginas e semântica. |
+| **CSS3** | Estilização e responsividade (a ser desenvolvida). |
+| **JavaScript** | Lógica de busca, filtros e modais interativos. |
+| **MySQL (futuro)** | Integração planejada para armazenamento de dados das espécies. |
 
-- Documentação técnica deve ser simulada como um PDF linkado ou uma página com estilo formal.
+---
 
-3. Estilo:
+## 🔍 Funcionalidades Principais
 
-- Tema visual inspirado em parque/jurássico (cores verdes, marrons, detalhes em pedra/folhagem).
+- **Catálogo de Espécies** com busca inteligente e filtros dinâmicos.  
+- **Modal de Ficha Técnica** com informações detalhadas e imagens realistas.  
+- **Menu Responsivo** com navegação entre áreas do parque.  
+- **Design modular** pronto para integração com banco de dados.
 
-- Tipografia legível e moderna.
+---
 
-- Layout em grid ou flexbox para responsividade.
+## 🧠 Autor
 
-4. Interatividade:
+- Gustavo Gallo — [gustavogallo-dev](https://github.com/gustavogallo-dev)
 
-- Menu hamburguer em telas pequenas.
+---
 
-- Pequenas animações em hover (botões, links).
+## 🧪 Como Executar
 
-- Script JS simples para alternar seções ou mostrar curiosidades dinamicamente.
-
-5. Organização de arquivos:
-
-- Estrutura de pastas:
-
-  /css/style.css
-
-  /js/script.js
-
-  /pages (com arquivos HTML das seções)
-
-  index.html
-
-Entregue o código completo inicial (HTML, CSS e JS) já separado em blocos, pronto para eu copiar em arquivos diferentes.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/ddb7c68c-6e33-4563-9079-4e0cae3a6cd4).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/gustavogallo-dev/jurassic-genesis-hub.git
